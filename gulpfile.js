@@ -7,9 +7,7 @@ var concat  = require('gulp-concat');
 var jest    = require('gulp-jest');
 var jshint  = require('gulp-jshint');
 var jsx     = require('gulp-react');
-var minify  = require('gulp-minify-css');
 var rename  = require('gulp-rename');
-var sass    = require('gulp-sass');
 var uglify  = require('gulp-uglify');
 var umd     = require('gulp-umd');
 
