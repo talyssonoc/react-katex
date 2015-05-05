@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>react-katex example</title>
+
+  <link rel="stylesheet" href="../bower_components/katex-build/katex.min.css">
+</head>
+<body>
+
+  <div>
+    <h1>With props</h1>
+
+    <p>
+      That's the InlineMath: <span id="props_inline"></span>.
+    </p>
+    <p>
+      That's the BlockMath:
+
+      <div id="props_block"></div>
+
+    </p>
+  </div>
+
+  <div>
+    <h1>With children</h1>
+
+    <p>
+      That's the InlineMath: <span id="children_inline"></span>.
+    </p>
+    <p>
+      That's the BlockMath:
+
+      <div id="children_block"></div>
+
+    </p>
+  </div>
+
+  <script src="../bower_components/react/react-with-addons.min.js"></script>
+  <script src="../bower_components/katex-build/katex.min.js"></script>
+  <script src="../dist/react-katex.js"></script>
+
+  <script>
+    var InlineMath = ReactKaTeX.InlineMath;
+    var BlockMath = ReactKaTeX.BlockMath;
+
+    React.render(React.createElement(InlineMath, {
+      math: '\\int_0^\\infty x^2 dx'
+    }), document.getElementById('props_inline'));
+
+    React.render(React.createElement(BlockMath, {
+      math: '\\int_0^\\infty x^2 dx'
+    }), document.getElementById('props_block'));
+
+    React.render(React.createElement(InlineMath, null, '\\int_0^\\infty x^2 dx'),
+      document.getElementById('children_inline'));
+
+    React.render(React.createElement(BlockMath, null, '\\int_0^\\infty x^2 dx'),
+      document.getElementById('children_block'));
+  </script>
+
+</body>
+</html>
