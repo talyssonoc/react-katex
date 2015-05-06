@@ -46,9 +46,9 @@ gulp.task('build', function() {
           param: 'React'
         },
         {
-          name: 'katex',
+          name: 'katex-build',
           amd: 'katex-build',
-          cjs: 'katex',
+          cjs: 'katex-build',
           global: 'katex',
           param: 'katex'
         }
