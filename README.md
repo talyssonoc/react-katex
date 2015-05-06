@@ -20,7 +20,7 @@ Or use one of the files inside the `dist` folder.
 
 When using `react-katex`, don't forget to import KaTeX CSS file (see `example/index.html`).
 
-__If you open the example file on Firefox directly (i.e. without a server) the fonts won't load, open it on Chrome or put it on some server, like [simplehttpserver](https://www.npmjs.com/package/simplehttpserver).__
+__If you open the example file on Firefox directly (i.e. without a server) the fonts won't load, open it on Chrome or put it on some server. You can use some [static one-liner](https://gist.github.com/willurd/5720255).__
 
 ## Usage
 
