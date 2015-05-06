@@ -9,20 +9,20 @@ var MathMixin = {
     };
   },
 
-  _renderMath: function _renderMath() {
-    var math = this.props.math || this.props.children;
+  getInitialState: function() {
+    return {
+      html: this.generateHtml(this.props)
+    };
+  },
 
-    katex.render(math, React.findDOMNode(this.refs.math), {
+  componentWillUpdate: function(nextProps, nextState) {
+    nextState.html = this.generateHtml(nextProps);
+  },
+
+  generateHtml: function(props) {
+    return katex.renderToString(props.math || props.children, {
       displayMode: this.displayMode
     });
-  },
-
-  componentDidMount: function() {
-    this._renderMath();
-  },
-
-  componentDidUpdate: function() {
-    this._renderMath();
   }
 };
 
@@ -33,7 +33,7 @@ var InlineMath = React.createClass({
 
   render: function() {
     return (
-      <span ref="math"></span>
+      <span dangerouslySetInnerHTML={{__html: this.state.html}}></span>
     );
   }
 });
@@ -45,7 +45,7 @@ var BlockMath = React.createClass({
 
   render: function() {
     return (
-      <div ref="math"></div>
+      <div dangerouslySetInnerHTML={{__html: this.state.html}}></div>
     );
   }
 });
