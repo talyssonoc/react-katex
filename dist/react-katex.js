@@ -4,7 +4,7 @@
     	return (root.ReactKaTeX = factory(React, katex));
     });
   } else if (typeof exports === 'object') {
-    module.exports = factory(require('react/addons'), require('katex'));
+    module.exports = factory(require('react/addons'), require('katex-build'));
   } else {
     root.ReactKaTeX = factory(root.React, root.katex);
   }
