@@ -5,35 +5,47 @@
   <title>react-katex example</title>
 
   <link rel="stylesheet" href="../bower_components/katex-build/katex.min.css">
+
+  <style>
+    .example {
+      width: 300px;
+      margin: 20px;
+      float: left;
+    }
+
+    .example-case {
+      height: 50px;
+    }
+  </style>
 </head>
 <body>
 
-  <div style="width: 250px;">
+  <div class="example">
     <h1>With props</h1>
 
-    <p>
+    <div class="example-case">
       That's the InlineMath: <span id="props_inline"></span>.
-    </p>
-    <p>
+    </div>
+    <div class="example-case">
       That's the BlockMath:
 
       <div id="props_block"></div>
 
-    </p>
+    </div>
   </div>
 
-  <div style="width: 250px;">
+  <div class="example">
     <h1>With children</h1>
 
-    <p>
+    <div class="example-case">
       That's the InlineMath: <span id="children_inline"></span>.
-    </p>
-    <p>
+    </div>
+    <div class="example-case">
       That's the BlockMath:
 
       <div id="children_block"></div>
 
-    </p>
+    </div>
   </div>
 
   <script src="../bower_components/react/react-with-addons.min.js"></script>
