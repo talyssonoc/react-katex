@@ -1,10 +1,10 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("React"), require("katex"));
+		module.exports = factory(require("react"), require("katex"));
 	else if(typeof define === 'function' && define.amd)
-		define("ReactKaTeX", ["React", "katex"], factory);
+		define("ReactKaTeX", ["react", "katex"], factory);
 	else if(typeof exports === 'object')
-		exports["ReactKaTeX"] = factory(require("React"), require("katex"));
+		exports["ReactKaTeX"] = factory(require("react"), require("katex"));
 	else
 		root["ReactKaTeX"] = factory(root["React"], root["katex"]);
 })(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_4__) {

@@ -15,7 +15,12 @@ module.exports = {
     umdNamedDefine: true
   },
   externals: {
-    react: 'React',
+    react: {
+      root: 'React',
+      commonjs: 'react',
+      commonjs2: 'react',
+      amd: 'react'
+    },
     katex: 'katex'
   },
   module: {
