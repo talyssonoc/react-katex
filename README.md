@@ -2,25 +2,27 @@
 
 [![Build Status](https://travis-ci.org/talyssonoc/react-katex.svg?branch=master)](https://travis-ci.org/talyssonoc/react-katex) [![Code Climate](https://codeclimate.com/github/talyssonoc/react-katex/badges/gpa.svg)](https://codeclimate.com/github/talyssonoc/react-katex)
 
-Display math with KaTeX and ReactJS !
+Display math with KaTeX and ReactJS!
 
-## Installation
+## Installing
 
 You can install it with npm:
 
 ```sh
-  $ npm install react-katex
+  $ npm install --save react-katex
 ```
 
-With Bower:
+With Yarn:
 
 ```sh
-  $ bower install react-katex
+  $ yarn add react-katex
 ```
 
 Or use one of the files inside the `dist` folder.
 
-When using `react-katex`, don't forget to import KaTeX CSS file (see `example/index.html`).
+__When using react-katex directly from the browser, react-katex will export a global called ReactKaTeX. Notice that the T and X from "KaTeX" are uppercased.__
+
+__Don't forget to import KaTeX CSS file (see `example/index.html`)__.
 
 __If you open the example file on Firefox directly (i.e. without a server) the fonts won't load, open it on Chrome or put it on some server. You can use some [static one-liner](https://gist.github.com/willurd/5720255).__
 
@@ -30,7 +32,7 @@ __If you open the example file on Firefox directly (i.e. without a server) the f
 
 ### InlineMath
 
-Let's you display math in the middle of the text.
+Display math in the middle of the text.
 
 ```jsx
   var InlineMath = ReactKaTeX.InlineMath;
@@ -50,7 +52,7 @@ It will be rendered like this:
 
 ### BlockMath
 
-Let's you display math in a separated block, with larger font and symbols.
+Display math in a separated block, with larger font and symbols.
 
 ```jsx
   var BlockMath = ReactKaTeX.BlockMath;
