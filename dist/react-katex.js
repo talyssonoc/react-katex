@@ -197,11 +197,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    math: _react2.default.PropTypes.string
 	  };
 
-	  Object.defineProperty(MathComponent, 'name', {
-	    value: Component.name,
-	    configurable: true
-	  });
-
 	  return MathComponent;
 	};
 

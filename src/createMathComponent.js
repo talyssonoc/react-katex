@@ -40,11 +40,6 @@ const createMathComponent = (Component, { displayMode }) => {
     math: React.PropTypes.string
   };
 
-  Object.defineProperty(MathComponent, 'name', {
-    value: Component.name,
-    configurable: true
-  });
-
   return MathComponent;
 };
 
