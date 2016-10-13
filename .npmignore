@@ -1,9 +1,6 @@
-npm-debug.log
 node_modules
 example
-docs
-.idea
-
+*.log
 
 # don't ignore .npmignore files
 !.npmignore
