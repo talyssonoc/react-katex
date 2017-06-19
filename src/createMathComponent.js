@@ -8,19 +8,25 @@ const createMathComponent = (Component, { displayMode }) => {
 
       this.usedProp = props.math ? 'math' : 'children';
 
-      this.state = {
-        html: this.generateHtml(props)
-      };
+      this.state = this.createNewState(null, props);
     }
 
-    componentWillReceiveProps(nextProps) {
-      this.setState({
-        html: this.generateHtml(nextProps)
-      });
+    componentWillReceiveProps() {
+      this.setState(this.createNewState);
     }
 
     shouldComponentUpdate(nextProps) {
       return nextProps[this.usedProp] !== this.props[this.usedProp];
+    }
+
+    createNewState(prevState, props) {
+      try {
+        const html = this.generateHtml(props);
+
+        return { html, error: undefined };
+      } catch(error) {
+        return { error, html: undefined };
+      }
     }
 
     generateHtml(props) {
@@ -31,13 +37,22 @@ const createMathComponent = (Component, { displayMode }) => {
     }
 
     render() {
-      return <Component html={this.state.html} />;
+      if(this.state.html) {
+        return <Component html={this.state.html} />;
+      }
+
+      if(this.props.renderError) {
+        return this.props.renderError(this.state.error);
+      }
+
+      throw this.state.error;
     }
   }
 
   MathComponent.propTypes = {
     children: React.PropTypes.string,
-    math: React.PropTypes.string
+    math: React.PropTypes.string,
+    renderError: React.PropTypes.func
   };
 
   return MathComponent;

@@ -159,23 +159,30 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      _this.usedProp = props.math ? 'math' : 'children';
 
-	      _this.state = {
-	        html: _this.generateHtml(props)
-	      };
+	      _this.state = _this.createNewState(null, props);
 	      return _this;
 	    }
 
 	    _createClass(MathComponent, [{
 	      key: 'componentWillReceiveProps',
-	      value: function componentWillReceiveProps(nextProps) {
-	        this.setState({
-	          html: this.generateHtml(nextProps)
-	        });
+	      value: function componentWillReceiveProps() {
+	        this.setState(this.createNewState);
 	      }
 	    }, {
 	      key: 'shouldComponentUpdate',
 	      value: function shouldComponentUpdate(nextProps) {
 	        return nextProps[this.usedProp] !== this.props[this.usedProp];
+	      }
+	    }, {
+	      key: 'createNewState',
+	      value: function createNewState(prevState, props) {
+	        try {
+	          var html = this.generateHtml(props);
+
+	          return { html: html, error: undefined };
+	        } catch (error) {
+	          return { error: error, html: undefined };
+	        }
 	      }
 	    }, {
 	      key: 'generateHtml',
@@ -185,7 +192,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	      key: 'render',
 	      value: function render() {
-	        return _react2.default.createElement(Component, { html: this.state.html });
+	        if (this.state.html) {
+	          return _react2.default.createElement(Component, { html: this.state.html });
+	        }
+
+	        if (this.props.renderError) {
+	          return this.props.renderError(this.state.error);
+	        }
+
+	        throw this.state.error;
 	      }
 	    }]);
 
@@ -194,7 +209,8 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  MathComponent.propTypes = {
 	    children: _react2.default.PropTypes.string,
-	    math: _react2.default.PropTypes.string
+	    math: _react2.default.PropTypes.string,
+	    renderError: _react2.default.PropTypes.func
 	  };
 
 	  return MathComponent;
