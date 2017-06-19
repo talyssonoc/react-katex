@@ -37,12 +37,12 @@ Display math in the middle of the text.
 ```jsx
   var InlineMath = ReactKaTeX.InlineMath;
 
-  React.render(<InlineMath math="\\int_0^\\infty x^2 dx"/>,
+  ReactDOM.render(<InlineMath math="\\int_0^\\infty x^2 dx"/>,
                 document.getElementById('math'));
 
   // or
 
-  React.render(<InlineMath>\int_0^\infty x^2 dx</InlineMath>,
+  ReactDOM.render(<InlineMath>\int_0^\infty x^2 dx</InlineMath>,
                 document.getElementById('math'));
 ```
 
@@ -57,15 +57,35 @@ Display math in a separated block, with larger font and symbols.
 ```jsx
   var BlockMath = ReactKaTeX.BlockMath;
 
-  React.render(<BlockMath math="\\int_0^\\infty x^2 dx"/>,
+  ReactDOM.render(<BlockMath math="\\int_0^\\infty x^2 dx"/>,
                 document.getElementById('math'));
 
   // or
 
-  React.render(<BlockMath>\int_0^\infty x^2 dx</BlockMath>,
+  ReactDOM.render(<BlockMath>\int_0^\infty x^2 dx</BlockMath>,
                 document.getElementById('math'));
 ```
 
 It will be rendered like this:
 
 ![Block math](example/block.png)
+
+
+### Error handling
+
+It's possible to handle parse errors using the prop `renderError`. This prop must be a function that receives the error object and returns what should be rendered when parsing fails:
+
+```jsx
+var BlockMath = ReactKaTeX.BlockMath;
+
+ReactDOM.render(
+  <BlockMath
+    math="\\int_{"
+    renderError={(error) => {
+      return <b>Fail: {error.name}</b>
+    }}
+  />,
+  document.getElementById('math'));
+
+// The code above will render '<b>Fail: ParseError</b>' because it's the value returned from `renderError`.
+```

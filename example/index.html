@@ -48,6 +48,14 @@
     </div>
   </div>
 
+  <div class="example">
+    <h1>With error handling</h1>
+
+    <div class="example-case">
+      Trying to render "\int_{": <div id="error_handling"></div>
+    </div>
+  </div>
+
   <script src="../node_modules/react/dist/react.min.js"></script>
   <script src="../node_modules/react-dom/dist/react-dom.min.js"></script>
   <script src="../node_modules/katex/dist/katex.min.js"></script>
@@ -70,6 +78,13 @@
 
     ReactDOM.render(React.createElement(BlockMath, null, '\\int_0^\\infty x^2 dx'),
       document.getElementById('children_block'));
+
+    ReactDOM.render(React.createElement(BlockMath, {
+      math: '\\int_{',
+      renderError: function(error) {
+        return React.createElement('b', null, 'You tried to render but got ' + error.name);
+      }
+    }), document.getElementById('error_handling'));
   </script>
 
 </body>
