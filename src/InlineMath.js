@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import createMathComponent from './createMathComponent';
 
 const InlineMath = ({ html }) => {
@@ -6,7 +7,7 @@ const InlineMath = ({ html }) => {
 };
 
 InlineMath.propTypes = {
-  html: React.PropTypes.string.isRequired
+  html: PropTypes.string.isRequired
 };
 
 export default createMathComponent(InlineMath, { displayMode: false });

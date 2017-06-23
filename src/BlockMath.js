@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import createMathComponent from './createMathComponent';
 
 const BlockMath = ({ html }) => {
@@ -6,7 +7,7 @@ const BlockMath = ({ html }) => {
 };
 
 BlockMath.propTypes = {
-  html: React.PropTypes.string.isRequired
+  html: PropTypes.string.isRequired
 };
 
 export default createMathComponent(BlockMath, { displayMode: true });
