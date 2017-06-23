@@ -188,10 +188,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	      key: 'generateHtml',
 	      value: function generateHtml(props) {
 	        var errorColor = props.errorColor;
-	        var throwOnError = props.throwOnError;
+	        var renderError = props.renderError;
 
 
-	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode, errorColor: errorColor, throwOnError: throwOnError });
+	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode, errorColor: errorColor, throwOnError: renderError ? true : false });
 	      }
 	    }, {
 	      key: 'render',
@@ -215,8 +215,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    children: _react2.default.PropTypes.string,
 	    errorColor: _react2.default.PropTypes.string,
 	    math: _react2.default.PropTypes.string,
-	    renderError: _react2.default.PropTypes.func,
-	    throwOnError: _react2.default.PropTypes.bool
+	    renderError: _react2.default.PropTypes.func
 	  };
 
 	  return MathComponent;

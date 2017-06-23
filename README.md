@@ -75,7 +75,7 @@ It will be rendered like this:
 
 #### The KaTeX way
 
-KaTeX's [error rendering options](https://github.com/Khan/KaTeX/blob/29fc2d56d409aaf5875601dc57da2cf66d1577e2/README.md#rendering-options) can be used and you can pass `throwOnError` (defaults to `true`) and `errorColor` (defaults to `#cc0000`) as props:
+KaTeX's [error rendering options](https://github.com/Khan/KaTeX/blob/29fc2d56d409aaf5875601dc57da2cf66d1577e2/README.md#rendering-options) can be used and you can pass `errorColor` (defaults to `#cc0000`) as a prop:
 
 ```jsx
 var BlockMath = ReactKaTeX.BlockMath;
@@ -83,14 +83,13 @@ var BlockMath = ReactKaTeX.BlockMath;
 ReactDOM.render(
   <BlockMath
     math={'\\int_0^\\infty x^2 dx \\inta'}
-    throwOnError={false}
     errorColor={'#cc0000'}
   />, document.getElementById('math'));
 ```
 
 This will be rendered like so:
 
-![Bad input](example/error.png)
+![KaTeX error](example/error.png)
 
 #### Modified
 
@@ -110,3 +109,8 @@ ReactDOM.render(
 
 // The code above will render '<b>Fail: ParseError</b>' because it's the value returned from `renderError`.
 ```
+
+This will render `<b>Fail: ParseError</b>`:
+
+![renderError](example/rendererror.png)
+
