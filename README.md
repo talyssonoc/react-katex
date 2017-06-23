@@ -78,6 +78,8 @@ It will be rendered like this:
 KaTeX's [error rendering options](https://github.com/Khan/KaTeX/blob/29fc2d56d409aaf5875601dc57da2cf66d1577e2/README.md#rendering-options) can be used and you can pass `throwOnError` (defaults to `true`) and `errorColor` (defaults to `#cc0000`) as props:
 
 ```jsx
+var BlockMath = ReactKaTeX.BlockMath;
+
 ReactDOM.render(
   <BlockMath
     math={'\\int_0^\\infty x^2 dx \\inta'}
