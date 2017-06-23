@@ -187,7 +187,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	      key: 'generateHtml',
 	      value: function generateHtml(props) {
-	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode });
+	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode, throwOnError: false });
 	      }
 	    }, {
 	      key: 'render',

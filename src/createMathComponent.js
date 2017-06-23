@@ -32,7 +32,7 @@ const createMathComponent = (Component, { displayMode }) => {
     generateHtml(props) {
       return KaTeX.renderToString(
         props[this.usedProp],
-        { displayMode }
+        { displayMode, throwOnError: false }
       );
     }
 
