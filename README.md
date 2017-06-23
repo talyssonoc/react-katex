@@ -73,7 +73,13 @@ It will be rendered like this:
 
 ### Error handling
 
-#### Basic
+#### Standard
+
+By default KaTeX's error rendering is used. For example, this incorrect input `\\int_0^\\infty x^2 dx \\inta` will be rendered like so:
+
+![Bad input](example/error.png)
+
+#### Modified
 
 It's possible to handle parse errors using the prop `renderError`. This prop must be a function that receives the error object and returns what should be rendered when parsing fails:
 
@@ -91,50 +97,3 @@ ReactDOM.render(
 
 // The code above will render '<b>Fail: ParseError</b>' because it's the value returned from `renderError`.
 ```
-
-#### Expanded
-
-If you want your users to have a better indication of where the error occured, the following code sample will render everything before the error correctly and show the rest of the error as plain text:
-
-```jsx
-var handleError = function(error, input) {
-  // everything before the error will be rendered correctly
-  var beforeError = input.substring(0, error.position);
-  // everything from the error onwards will be shown as red underlined, plain text
-  var afterError = input.substring(error.position);
-  var errorStyle = {
-    textDecoration: 'dashed underline #cc1234'
-  };
-  // This is only necessary for BlockMath to ensure the formula before the error
-  // and the plain text after the error are both centered horizontally. This can
-  // be skipped when you're using InlineMath
-  var centerBlockMathStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center'
-  };
-  return (
-    <span style={centerBlockMathStyle}>
-      <BlockMath
-        math={beforeError}
-        renderError={() => <span />} // render an empty span to prevent error output in the console
-      />
-      <span style={errorStyle}>
-        {afterError}
-      </span>
-    </span>
-  )
-};
-
-var badInput = '\\int_0^\\infty x^2 dx \\inta';
-
-ReactDOM.render(
-  <BlockMath
-    math={badInput}
-    renderError={(error) => handleError(error, badInput)}
-  />, document.getElementById('math'));
-```
-
-This means that this faulty input `\\int_0^\\infty x^2 dx \\inta` will be rendered as 
-
-![Bad input](example/error.png)
