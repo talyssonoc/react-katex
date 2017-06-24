@@ -73,9 +73,9 @@ It will be rendered like this:
 
 ### Error handling
 
-#### The KaTeX way
+#### Default error message
 
-KaTeX's [error rendering options](https://github.com/Khan/KaTeX/blob/29fc2d56d409aaf5875601dc57da2cf66d1577e2/README.md#rendering-options) can be used and you can pass `errorColor` (defaults to `#cc0000`) as a prop:
+By default the error rendering is handled by KaTeX. You can optionally pass `errorColor` (defaults to `#cc0000`) as a prop:
 
 ```jsx
 var BlockMath = ReactKaTeX.BlockMath;
@@ -91,7 +91,7 @@ This will be rendered like so:
 
 ![KaTeX error](example/error.png)
 
-#### Modified
+#### Custom error message
 
 It's possible to handle parse errors using the prop `renderError`. This prop must be a function that receives the error object and returns what should be rendered when parsing fails:
 
