@@ -34,7 +34,7 @@ const createMathComponent = (Component, { displayMode }) => {
 
       return KaTeX.renderToString(
         props[this.usedProp],
-        { displayMode, errorColor, throwOnError: renderError ? true : false }
+        { displayMode, errorColor, throwOnError: !!renderError }
       );
     }
 

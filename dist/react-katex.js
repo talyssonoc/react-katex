@@ -191,7 +191,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var renderError = props.renderError;
 
 
-	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode, errorColor: errorColor, throwOnError: renderError ? true : false });
+	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode, errorColor: errorColor, throwOnError: !!renderError });
 	      }
 	    }, {
 	      key: 'render',
