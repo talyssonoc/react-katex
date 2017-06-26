@@ -21,7 +21,13 @@ module.exports = {
       commonjs2: 'react',
       amd: 'react'
     },
-    katex: 'katex'
+    katex: 'katex',
+    'prop-types': {
+      root: 'PropTypes',
+      commonjs: 'prop-types',
+      commonjs2: 'prop-types',
+      amd: 'prop-types'
+    }
   },
   module: {
     loaders: [
