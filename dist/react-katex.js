@@ -187,7 +187,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	      key: 'generateHtml',
 	      value: function generateHtml(props) {
-	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode });
+	        var errorColor = props.errorColor;
+	        var renderError = props.renderError;
+
+
+	        return _katex2.default.renderToString(props[this.usedProp], { displayMode: displayMode, errorColor: errorColor, throwOnError: !!renderError });
 	      }
 	    }, {
 	      key: 'render',
@@ -209,6 +213,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  MathComponent.propTypes = {
 	    children: _react2.default.PropTypes.string,
+	    errorColor: _react2.default.PropTypes.string,
 	    math: _react2.default.PropTypes.string,
 	    renderError: _react2.default.PropTypes.func
 	  };

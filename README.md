@@ -73,6 +73,26 @@ It will be rendered like this:
 
 ### Error handling
 
+#### Default error message
+
+By default the error rendering is handled by KaTeX. You can optionally pass `errorColor` (defaults to `#cc0000`) as a prop:
+
+```jsx
+var BlockMath = ReactKaTeX.BlockMath;
+
+ReactDOM.render(
+  <BlockMath
+    math={'\\int_0^\\infty x^2 dx \\inta'}
+    errorColor={'#cc0000'}
+  />, document.getElementById('math'));
+```
+
+This will be rendered like so:
+
+![KaTeX error](example/error.png)
+
+#### Custom error message
+
 It's possible to handle parse errors using the prop `renderError`. This prop must be a function that receives the error object and returns what should be rendered when parsing fails:
 
 ```jsx
@@ -89,3 +109,8 @@ ReactDOM.render(
 
 // The code above will render '<b>Fail: ParseError</b>' because it's the value returned from `renderError`.
 ```
+
+This will render `<b>Fail: ParseError</b>`:
+
+![renderError](example/rendererror.png)
+

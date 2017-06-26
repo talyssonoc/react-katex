@@ -30,9 +30,11 @@ const createMathComponent = (Component, { displayMode }) => {
     }
 
     generateHtml(props) {
+      const { errorColor, renderError } = props;
+
       return KaTeX.renderToString(
         props[this.usedProp],
-        { displayMode }
+        { displayMode, errorColor, throwOnError: !!renderError }
       );
     }
 
@@ -51,6 +53,7 @@ const createMathComponent = (Component, { displayMode }) => {
 
   MathComponent.propTypes = {
     children: React.PropTypes.string,
+    errorColor: React.PropTypes.string,
     math: React.PropTypes.string,
     renderError: React.PropTypes.func
   };
