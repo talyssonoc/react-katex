@@ -6,9 +6,10 @@ import KaTeX from 'katex';
 export default (Component, { wrapperTag, displayMode }) => {
   const sumFormula = '\\sum_0^\\infty';
   const integralFormula = '\\int_{-infty}^\\infty';
-  const brokenFormula = '\\int_{';
+  const invalidCommandFormula = '\\inta';
+  const incompleteFormula = '\\sum_{';
   const renderError = (error) => (
-    <span className={'error'}>{`${error.name}: Invalid formula ${brokenFormula}`}</span>
+    <span className={'error'}>{`${error.name}: Cannot render this formula`}</span>
   );
 
   context('when passing the formula as props', () => {
@@ -57,23 +58,10 @@ export default (Component, { wrapperTag, displayMode }) => {
   });
 
   describe('error handling', () => {
-    it('renders the returned value from `renderError` prop when formula is invalid', () => {
-      const math = shallow(
-        <Component
-          math={brokenFormula}
-          renderError={renderError}
-        />
-      );
-
-      expect(math.html()).to.equal(
-        '<span class="error">ParseError: Invalid formula \\int_{</span>'
-      );
-    });
-
     it('updates when passing from invalid to valid formula', () => {
       const math = shallow(
         <Component
-          math={brokenFormula}
+          math={invalidCommandFormula}
           renderError={renderError}
         />
       );
@@ -96,18 +84,73 @@ export default (Component, { wrapperTag, displayMode }) => {
       );
 
       math.setProps({
-        math: brokenFormula
+        math: invalidCommandFormula
       });
 
       expect(math.html()).to.equal(
-        '<span class="error">ParseError: Invalid formula \\int_{</span>'
+        '<span class="error">ParseError: Cannot render this formula</span>'
       );
     });
 
-    it('blows when no `renderError` prop is passed', () => {
-      expect(() => {
-        shallow(<Component math={brokenFormula} />);
-      }).to.throw('KaTeX parse error');
+    context('when using default error handler', () => {
+      it('renders the formula with the wrong part highlighted in default color', () => {
+        const math = shallow(
+          <Component math={invalidCommandFormula} />
+        );
+
+        expect(math.html()).to.include('color:#cc0000;');
+      });
+
+      context('when passing custom error color', () => {
+        it('renders the formula with the wrong part highlighted in custom color', () => {
+          const math = shallow(
+            <Component
+              errorColor={'blue'}
+              math={invalidCommandFormula}
+            />
+          );
+
+          expect(math.html()).to.include('color:blue;');
+        });
+      });
+
+      context('when error is not caused by an invalid command', () => {
+        it('blows during rendering', () => {
+          expect(() => shallow(
+            <Component math={incompleteFormula} />
+          )).to.throw('KaTeX parse error');
+        });
+      });
+    });
+
+    context('when using custom error handler', () => {
+      it('renders the returned value from `renderError` prop', () => {
+        const math = shallow(
+          <Component
+            math={invalidCommandFormula}
+            renderError={renderError}
+          />
+        );
+
+        expect(math.html()).to.equal(
+          '<span class="error">ParseError: Cannot render this formula</span>'
+        );
+      });
+
+      context('when error is not caused by an invalid command', () => {
+        it('still uses custom handler', () => {
+          const math = shallow(
+            <Component
+              math={incompleteFormula}
+              renderError={renderError}
+            />
+          );
+
+          expect(math.html()).to.equal(
+            '<span class="error">ParseError: Cannot render this formula</span>'
+          );
+        });
+      });
     });
   });
 };
