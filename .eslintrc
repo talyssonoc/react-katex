@@ -18,6 +18,7 @@
     "react/jsx-indent-props": [2, 2],
     "react/no-danger": 0,
     "react/no-set-state": 0,
-    "react/no-unused-prop-types": 0
+    "react/no-unused-prop-types": 0,
+    "react/require-default-props": 0
   }
 }
