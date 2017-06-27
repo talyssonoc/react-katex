@@ -115,8 +115,8 @@ var createMathComponent = function createMathComponent(Component, _ref) {
     }, {
       key: 'generateHtml',
       value: function generateHtml(props) {
-        var errorColor = props.errorColor;
-        var renderError = props.renderError;
+        var errorColor = props.errorColor,
+            renderError = props.renderError;
 
 
         return KaTeX.renderToString(props[this.usedProp], { displayMode: displayMode, errorColor: errorColor, throwOnError: !!renderError });
