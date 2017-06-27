@@ -13,7 +13,7 @@
   "main": "dist/react-katex",
   "scripts": {
     "build": "webpack",
-    "test": "mocha",
+    "test": "nyc --reporter=html mocha",
     "lint": "eslint {src,test}/*.js",
     "prepublish": "npm run build"
   },
@@ -46,6 +46,7 @@
     "eslint-plugin-react": "^6.4.1",
     "katex": "^0.7.0",
     "mocha": "^3.1.2",
+    "nyc": "^11.0.3",
     "prop-types": "^15.5.10",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
