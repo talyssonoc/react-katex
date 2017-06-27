@@ -1,6 +1,6 @@
 # react-katex
 
-[![Build Status](https://travis-ci.org/talyssonoc/react-katex.svg?branch=master)](https://travis-ci.org/talyssonoc/react-katex) [![Code Climate](https://codeclimate.com/github/talyssonoc/react-katex/badges/gpa.svg)](https://codeclimate.com/github/talyssonoc/react-katex)
+[![Build Status](https://travis-ci.org/talyssonoc/react-katex.svg?branch=master)](https://travis-ci.org/talyssonoc/react-katex) [![Code Climate](https://codeclimate.com/github/talyssonoc/react-katex/badges/gpa.svg)](https://codeclimate.com/github/talyssonoc/react-katex) [![Coverage Status](https://coveralls.io/repos/github/talyssonoc/react-katex/badge.svg?branch=master)](https://coveralls.io/github/talyssonoc/react-katex?branch=master)
 
 Display math with KaTeX and ReactJS!
 
