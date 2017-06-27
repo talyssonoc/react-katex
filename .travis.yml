@@ -3,3 +3,4 @@ node_js:
   - "4.0"
   - "6.0"
 script: "npm test"
+after_success: "npm run report-coverage"
