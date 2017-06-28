@@ -114,3 +114,28 @@ This will render `<b>Fail: ParseError</b>`:
 
 ![renderError](example/rendererror.png)
 
+### Template Literals
+
+It can be annoying to escape backslashes and `{ }` doesn't work as a child in react. This can be circumvented with the String.raw tag on a template literal when using ES6.
+
+```jsx
+ReactDOM.render(<BlockMath>{String.raw`\frac{\text{m}}{\text{s}^2`}</BlockMath>,
+                document.getElementById('math'));
+```
+
+Backticks must be escaped with a backslash but would be passed to katex as \\`. A tag can be created to replace \\` with `
+
+```jsx
+const latex = (...a) => String.raw(...a).replace("\\`","`")
+ReactDOM.render(<BlockMath>{latex`\``}</BlockMath>,
+                document.getElementById('math'));
+```
+
+You can even do variable substitution
+
+```jsx
+const top = "m";
+const bottom = "s";
+ReactDOM.render(<BlockMath>{String.raw`\frac{\text{${top}}}{\text{${bottom}}^2`}</BlockMath>,
+                document.getElementById('math'));
+```
