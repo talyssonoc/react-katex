@@ -114,16 +114,31 @@ This will render `<b>Fail: ParseError</b>`:
 
 ![renderError](example/rendererror.png)
 
-### Template Literals
+### Escaping expressions
 
-It can be annoying to escape backslashes and `{ }` doesn't work as a child in react. This can be circumvented with the String.raw tag on a template literal when using ES6.
+In addition to using the math attribute, you can also quote as a child allowing the use of `{ }` in your expression.
 
 ```jsx
-ReactDOM.render(<BlockMath>{String.raw`\frac{\text{m}}{\text{s}^2`}</BlockMath>,
+ReactDOM.render(<BlockMath>{"\\frac{\\text{m}}{\\text{s}^2}"}</BlockMath>,
                 document.getElementById('math'));
 ```
 
-Backticks must be escaped with a backslash but would be passed to katex as \\`. A tag can be created to replace \\` with `
+Or Multiline
+
+```jsx
+ReactDOM.render(<BlockMath>{`\\frac{\\text{m}}
+{\\text{s}^2}`}</BlockMath>,
+                document.getElementById('math'));
+```
+
+However, it can be annoying to escape backslashes. This can be circumvented with the `String.raw` tag on a template literal when using ES6.
+
+```jsx
+ReactDOM.render(<BlockMath>{String.raw`\frac{\text{m}}{\text{s}^2}`}</BlockMath>,
+                document.getElementById('math'));
+```
+
+Backticks must be escaped with a backslash but would be passed to KaTeX as \\`. A tag can be created to replace \\` with `
 
 ```jsx
 const latex = (...a) => String.raw(...a).replace("\\`","`")
@@ -136,6 +151,6 @@ You can even do variable substitution
 ```jsx
 const top = "m";
 const bottom = "s";
-ReactDOM.render(<BlockMath>{String.raw`\frac{\text{${top}}}{\text{${bottom}}^2`}</BlockMath>,
+ReactDOM.render(<BlockMath>{String.raw`\frac{\text{${top}}}{\text{${bottom}}^2}`}</BlockMath>,
                 document.getElementById('math'));
 ```
