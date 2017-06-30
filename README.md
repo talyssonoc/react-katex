@@ -116,7 +116,7 @@ This will render `<b>Fail: ParseError</b>`:
 
 ### Escaping expressions
 
-In addition to using the math property, you can also quote as a child allowing the use of `{ }` in your expression.
+In addition to using the `math` property, you can also quote as a child allowing the use of `{ }` in your expression.
 
 ```jsx
 ReactDOM.render(<BlockMath>{"\\frac{\\text{m}}{\\text{s}^2}"}</BlockMath>,
