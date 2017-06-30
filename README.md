@@ -116,7 +116,7 @@ This will render `<b>Fail: ParseError</b>`:
 
 ### Escaping expressions
 
-In addition to using the math attribute, you can also quote as a child allowing the use of `{ }` in your expression.
+In addition to using the math property, you can also quote as a child allowing the use of `{ }` in your expression.
 
 ```jsx
 ReactDOM.render(<BlockMath>{"\\frac{\\text{m}}{\\text{s}^2}"}</BlockMath>,
@@ -138,7 +138,7 @@ ReactDOM.render(<BlockMath>{String.raw`\frac{\text{m}}{\text{s}^2}`}</BlockMath>
                 document.getElementById('math'));
 ```
 
-Backticks must be escaped with a backslash but would be passed to KaTeX as \\`. A tag can be created to replace \\` with `
+Backticks must be escaped with a backslash but would be passed to KaTeX as \\\`. A tag can be created to replace \\\` with \`
 
 ```jsx
 const latex = (...a) => String.raw(...a).replace("\\`","`")
