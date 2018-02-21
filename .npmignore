@@ -1,6 +1,7 @@
 node_modules
 example
 *.log
+.babelrc
 
 # don't ignore .npmignore files
 !.npmignore
