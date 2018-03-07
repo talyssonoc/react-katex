@@ -4,21 +4,38 @@
 
 Display math with KaTeX and ReactJS!
 
-## Installing
+## Usage
 
-You can install it with npm:
-
+**Install KaTeX as a peer dependency**: you should first install katex. It is required as a peer dependency of `react-katex`. run
 ```sh
-  $ npm install --save react-katex
+npm install katex react-katex
+```
+or with `yarn`
+```sh
+yarn add katex react-katex
 ```
 
-With Yarn:
+Now you can use it as:
+```jsx
+import React from "react";
+import {BlockMath, InlineMath} from "react-katex";
 
-```sh
-  $ yarn add react-katex
+export function YourComponent(){
+     return <BlockMath math="\alpha + \beta"/>
+}
 ```
 
-Or use one of the files inside the `dist` folder.
+Or use one of the files inside the `dist` folder: This should be recorgnized by your IDE.
+```jsx
+import React from "react";
+import BlockMath from "react-katex/dist/BlockMath";
+
+export function YourComponent(){
+     return <BlockMath math="\alpha + \beta"/>
+}
+```
+
+### Globals
 
 __When using react-katex directly from the browser, react-katex will export a global called ReactKaTeX. Notice that the T and X from "KaTeX" are uppercased.__
 
