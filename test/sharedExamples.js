@@ -114,11 +114,25 @@ export default (Component, { wrapperTag, displayMode }) => {
         });
       });
 
-      context('when error is not caused by an invalid command', () => {
-        it('blows during rendering', () => {
-          expect(() => shallow(
-            <Component math={incompleteFormula} />
-          )).to.throw('KaTeX parse error');
+      context('when error is caused by an invalid prop type', () => {
+        it('renders error message', () => {
+          const math = shallow(<Component displayMode math={123} />);
+
+          expect(math.html()).to.equal(
+            `<${wrapperTag}>KaTeX can only parse string typed expression</${wrapperTag}>`
+          );
+        });
+      });
+
+      context('when error is caused while parsing math expression', () => {
+        it('renders error message', () => {
+          const math = shallow(
+            <Component displayMode math={incompleteFormula} />
+          );
+
+          expect(math.html()).to.equal(
+            `<${wrapperTag}>KaTeX parse error: Expected '}', got 'EOF' at end of input: \\sum_{</${wrapperTag}>`
+          );
         });
       });
     });
@@ -137,13 +151,10 @@ export default (Component, { wrapperTag, displayMode }) => {
         );
       });
 
-      context('when error is not caused by an invalid command', () => {
+      context('when error is caused while parsing math expression', () => {
         it('still uses custom handler', () => {
           const math = shallow(
-            <Component
-              math={incompleteFormula}
-              renderError={renderError}
-            />
+            <Component math={incompleteFormula} renderError={renderError} />
           );
 
           expect(math.html()).to.equal(
