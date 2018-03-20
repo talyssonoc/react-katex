@@ -6,7 +6,7 @@
     "katex": "^0.9.0-beta1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-katex": "git+https://github.com/talyssonoc/react-katex.git",
+    "react-katex": "^1.2.0",
     "react-scripts": "1.1.0"
   },
   "scripts": {
