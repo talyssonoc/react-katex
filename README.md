@@ -2,29 +2,13 @@
 
 [![Build Status](https://travis-ci.org/talyssonoc/react-katex.svg?branch=master)](https://travis-ci.org/talyssonoc/react-katex) [![Code Climate](https://codeclimate.com/github/talyssonoc/react-katex/badges/gpa.svg)](https://codeclimate.com/github/talyssonoc/react-katex) [![Coverage Status](https://coveralls.io/repos/github/talyssonoc/react-katex/badge.svg?branch=master)](https://coveralls.io/github/talyssonoc/react-katex?branch=master)
 
-Display math with KaTeX and ReactJS!
+> Display math expressions with [KaTeX](https://khan.github.io/KaTeX/) and React
 
-## Installing
-
-You can install it with npm:
+## Installation
 
 ```sh
-  $ npm install --save react-katex
+  $ npm install react-katex
 ```
-
-With Yarn:
-
-```sh
-  $ yarn add react-katex
-```
-
-Or use one of the files inside the `dist` folder.
-
-__When using react-katex directly from the browser, react-katex will export a global called ReactKaTeX. Notice that the T and X from "KaTeX" are uppercased.__
-
-__Don't forget to import KaTeX CSS file (see `example/index.html`)__.
-
-__If you open the example file on Firefox directly (i.e. without a server) the fonts won't load, open it on Chrome or put it on some server. You can use some [static one-liner](https://gist.github.com/willurd/5720255).__
 
 ## Usage
 
@@ -70,6 +54,12 @@ It will be rendered like this:
 
 ![Block math](docs/block.png)
 
+
+**Note:**<br>
+Don't forget to import KaTeX CSS file.
+```jsx
+import 'katex/dist/katex.min.css';
+```
 
 ### Error handling
 
