@@ -8,11 +8,16 @@
 
 ```sh
   $ npm install react-katex
+  # or
+  $ yarn add react-katex
 ```
 
 ## Usage
 
-`react-katex` has two types of math components, `InlineMath` and `BlockMath`.
+```jsx
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex/dist/react-katex';
+```
 
 ### InlineMath
 

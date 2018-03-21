@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import 'katex/dist/katex.min.css';
-import { BlockMath, InlineMath } from 'react-katex';
+import { BlockMath, InlineMath } from 'react-katex/dist/react-katex';
 
 const ExamplePage = () => (
   <div
