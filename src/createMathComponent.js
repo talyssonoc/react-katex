@@ -26,12 +26,8 @@ const createMathComponent = (Component, { displayMode }) => {
 
         return { html, error: undefined };
       } catch (error) {
-        if (error.__proto__ === KaTeX.ParseError.prototype) {
-          return { error, html: `${error.message}` };
-        }
-
-        if (error.__proto__ === TypeError.prototype) {
-          return { error, html: `${error.message}` };
+        if (error instanceof KaTeX.ParseError || error instanceof TypeError) {
+          return { error };
         }
 
         throw error;
@@ -49,15 +45,18 @@ const createMathComponent = (Component, { displayMode }) => {
     }
 
     render() {
-      if (this.props.renderError && this.state.error) {
-        return this.props.renderError(this.state.error);
+      const { error, html } = this.state;
+      const { renderError } = this.props;
+
+      if (error) {
+        return renderError ? (
+          renderError(error)
+        ) : (
+          <Component html={`${error.message}`} />
+        );
       }
 
-      if (this.state.html) {
-        return <Component html={this.state.html} />;
-      }
-
-      return null;
+      return <Component html={html} />;
     }
   }
 
