@@ -127,7 +127,7 @@ export default (Component, { wrapperTag, displayMode }) => {
       context('when error is caused while parsing math expression', () => {
         it('renders error message', () => {
           const math = shallow(
-            <Component displayMode math={incompleteFormula} />
+            <Component math={incompleteFormula} />
           );
 
           expect(math.html()).to.equal(
