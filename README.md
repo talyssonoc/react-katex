@@ -48,7 +48,7 @@ Display math in the middle of the text.
 
 It will be rendered like this:
 
-![Inline math](example/inline.png)
+![Inline math](docs/inline.png)
 
 ### BlockMath
 
@@ -68,7 +68,7 @@ Display math in a separated block, with larger font and symbols.
 
 It will be rendered like this:
 
-![Block math](example/block.png)
+![Block math](docs/block.png)
 
 
 ### Error handling
@@ -89,7 +89,7 @@ ReactDOM.render(
 
 This will be rendered like so:
 
-![KaTeX error](example/error.png)
+![KaTeX error](docs/error.png)
 
 #### Custom error message
 
@@ -97,7 +97,7 @@ It's possible to handle parse errors using the prop `renderError`. This prop mus
 
 ```jsx
 var BlockMath = ReactKaTeX.BlockMath;
-
+  
 ReactDOM.render(
   <BlockMath
     math="\\int_{"
@@ -112,7 +112,7 @@ ReactDOM.render(
 
 This will render `<b>Fail: ParseError</b>`:
 
-![renderError](example/rendererror.png)
+![renderError](docs/rendererror.png)
 
 ### Escaping expressions
 
