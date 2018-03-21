@@ -16,7 +16,7 @@
 
 ```jsx
 import 'katex/dist/katex.min.css';
-import { InlineMath, BlockMath } from 'react-katex/dist/react-katex';
+import { InlineMath, BlockMath } from 'react-katex';
 ```
 
 ### InlineMath
