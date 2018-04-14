@@ -2,33 +2,22 @@
 
 [![Build Status](https://travis-ci.org/talyssonoc/react-katex.svg?branch=master)](https://travis-ci.org/talyssonoc/react-katex) [![Code Climate](https://codeclimate.com/github/talyssonoc/react-katex/badges/gpa.svg)](https://codeclimate.com/github/talyssonoc/react-katex) [![Coverage Status](https://coveralls.io/repos/github/talyssonoc/react-katex/badge.svg?branch=master)](https://coveralls.io/github/talyssonoc/react-katex?branch=master)
 
-Display math with KaTeX and ReactJS!
+> Display math expressions with [KaTeX](https://khan.github.io/KaTeX/) and React
 
-## Installing
-
-You can install it with npm:
+## Installation
 
 ```sh
-  $ npm install --save react-katex
-```
-
-With Yarn:
-
-```sh
+  $ npm install react-katex
+  # or
   $ yarn add react-katex
 ```
 
-Or use one of the files inside the `dist` folder.
-
-__When using react-katex directly from the browser, react-katex will export a global called ReactKaTeX. Notice that the T and X from "KaTeX" are uppercased.__
-
-__Don't forget to import KaTeX CSS file (see `example/index.html`)__.
-
-__If you open the example file on Firefox directly (i.e. without a server) the fonts won't load, open it on Chrome or put it on some server. You can use some [static one-liner](https://gist.github.com/willurd/5720255).__
-
 ## Usage
 
-`react-katex` has two types of math components, `InlineMath` and `BlockMath`.
+```jsx
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
+```
 
 ### InlineMath
 
@@ -48,7 +37,7 @@ Display math in the middle of the text.
 
 It will be rendered like this:
 
-![Inline math](example/inline.png)
+![Inline math](docs/inline.png)
 
 ### BlockMath
 
@@ -68,8 +57,14 @@ Display math in a separated block, with larger font and symbols.
 
 It will be rendered like this:
 
-![Block math](example/block.png)
+![Block math](docs/block.png)
 
+
+**Note:**<br>
+Don't forget to import KaTeX CSS file.
+```jsx
+import 'katex/dist/katex.min.css';
+```
 
 ### Error handling
 
@@ -89,7 +84,7 @@ ReactDOM.render(
 
 This will be rendered like so:
 
-![KaTeX error](example/error.png)
+![KaTeX error](docs/error.png)
 
 #### Custom error message
 
@@ -97,7 +92,7 @@ It's possible to handle parse errors using the prop `renderError`. This prop mus
 
 ```jsx
 var BlockMath = ReactKaTeX.BlockMath;
-
+  
 ReactDOM.render(
   <BlockMath
     math="\\int_{"
@@ -112,7 +107,7 @@ ReactDOM.render(
 
 This will render `<b>Fail: ParseError</b>`:
 
-![renderError](example/rendererror.png)
+![renderError](docs/rendererror.png)
 
 ### Escaping expressions
 

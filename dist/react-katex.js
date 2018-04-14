@@ -109,7 +109,11 @@ var createMathComponent = function createMathComponent(Component, _ref) {
 
           return { html: html, error: undefined };
         } catch (error) {
-          return { error: error, html: undefined };
+          if (error instanceof KaTeX.ParseError || error instanceof TypeError) {
+            return { error: error };
+          }
+
+          throw error;
         }
       }
     }, {
@@ -119,20 +123,26 @@ var createMathComponent = function createMathComponent(Component, _ref) {
             renderError = props.renderError;
 
 
-        return KaTeX.renderToString(props[this.usedProp], { displayMode: displayMode, errorColor: errorColor, throwOnError: !!renderError });
+        return KaTeX.renderToString(props[this.usedProp], {
+          displayMode: displayMode,
+          errorColor: errorColor,
+          throwOnError: !!renderError
+        });
       }
     }, {
       key: 'render',
       value: function render() {
-        if (this.state.html) {
-          return React.createElement(Component, { html: this.state.html });
+        var _state = this.state,
+            error = _state.error,
+            html = _state.html;
+        var renderError = this.props.renderError;
+
+
+        if (error) {
+          return renderError ? renderError(error) : React.createElement(Component, { html: '' + error.message });
         }
 
-        if (this.props.renderError) {
-          return this.props.renderError(this.state.error);
-        }
-
-        throw this.state.error;
+        return React.createElement(Component, { html: html });
       }
     }]);
     return MathComponent;

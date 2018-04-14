@@ -25,30 +25,38 @@ const createMathComponent = (Component, { displayMode }) => {
         const html = this.generateHtml(props);
 
         return { html, error: undefined };
-      } catch(error) {
-        return { error, html: undefined };
+      } catch (error) {
+        if (error instanceof KaTeX.ParseError || error instanceof TypeError) {
+          return { error };
+        }
+
+        throw error;
       }
     }
 
     generateHtml(props) {
       const { errorColor, renderError } = props;
 
-      return KaTeX.renderToString(
-        props[this.usedProp],
-        { displayMode, errorColor, throwOnError: !!renderError }
-      );
+      return KaTeX.renderToString(props[this.usedProp], {
+        displayMode,
+        errorColor,
+        throwOnError: !!renderError
+      });
     }
 
     render() {
-      if(this.state.html) {
-        return <Component html={this.state.html} />;
+      const { error, html } = this.state;
+      const { renderError } = this.props;
+
+      if (error) {
+        return renderError ? (
+          renderError(error)
+        ) : (
+          <Component html={`${error.message}`} />
+        );
       }
 
-      if(this.props.renderError) {
-        return this.props.renderError(this.state.error);
-      }
-
-      throw this.state.error;
+      return <Component html={html} />;
     }
   }
 
@@ -61,6 +69,5 @@ const createMathComponent = (Component, { displayMode }) => {
 
   return MathComponent;
 };
-
 
 export default createMathComponent;

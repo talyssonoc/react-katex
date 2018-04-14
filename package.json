@@ -1,6 +1,6 @@
 {
   "name": "react-katex",
-  "version": "1.2.0",
+  "version": "2.0.2",
   "description": "Display math in TeX with KaTeX and ReactJS",
   "keywords": [
     "react",
@@ -11,7 +11,6 @@
   ],
   "homepage": "https://github.com/talyssonoc/react-katex",
   "main": "dist/react-katex.js",
-  "module": "src/index.js",
   "scripts": {
     "build": "npm run build-normal && npm run build-mini",
     "build-normal": "rollup -c --environment NODE_ENV:production",
@@ -34,9 +33,8 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "katex": "^0.7.0",
     "prop-types": "^15.5.10",
-    "react": "^15.3.2"
+    "react": "^15.3.2 || ^16.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -51,7 +49,6 @@
     "enzyme": "^2.9.1",
     "eslint": "^4.1.1",
     "eslint-plugin-react": "^7.1.0",
-    "katex": "^0.7.0",
     "mocha": "^3.4.2",
     "nyc": "^11.0.3",
     "prop-types": "^15.5.10",
@@ -65,5 +62,8 @@
   "nyc": {
     "sourceMap": false,
     "instrument": false
+  },
+  "dependencies": {
+    "katex": "^0.9.0"
   }
 }
