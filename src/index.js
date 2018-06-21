@@ -1,2 +1,2 @@
-export { default as InlineMath } from './InlineMath.jsx';
-export { default as BlockMath } from './BlockMath.jsx';
+export { default as InlineMath } from './InlineMath';
+export { default as BlockMath } from './BlockMath';

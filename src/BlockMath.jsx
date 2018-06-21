@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import createMathComponent from './createMathComponent.jsx';
+import createMathComponent from './createMathComponent';
 
 const BlockMath = ({ html }) => {
   return <div dangerouslySetInnerHTML={{__html: html}} />;

@@ -1,9 +1,10 @@
 import babel from 'rollup-plugin-babel';
+import resolve from 'rollup-plugin-node-resolve';
 import uglify from 'rollup-plugin-uglify';
 
 const minify = !!process.env.MINIFY;
 
-const plugins = [babel()];
+const plugins = [resolve({ extensions: ['.js', '.jsx'] }), babel()];
 let dest = 'dist/react-katex.js';
 
 if(minify) {
