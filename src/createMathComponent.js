@@ -40,7 +40,8 @@ const createMathComponent = (Component, { displayMode }) => {
       return KaTeX.renderToString(props[this.usedProp], {
         displayMode,
         errorColor,
-        throwOnError: !!renderError
+        throwOnError: !!renderError,
+        ...this.props.katexOptions
       });
     }
 
@@ -63,8 +64,13 @@ const createMathComponent = (Component, { displayMode }) => {
   MathComponent.propTypes = {
     children: PropTypes.string,
     errorColor: PropTypes.string,
+    katexOptions: PropTypes.object,
     math: PropTypes.string,
     renderError: PropTypes.func
+  };
+
+  MathComponent.defaultProps = {
+    katexOptions: {}
   };
 
   return MathComponent;
