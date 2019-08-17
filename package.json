@@ -64,6 +64,6 @@
     "instrument": false
   },
   "dependencies": {
-    "katex": "^0.9.0"
+    "katex": "^0.11.0"
   }
 }
