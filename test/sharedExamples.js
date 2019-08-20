@@ -131,7 +131,7 @@ export default (Component, { wrapperTag, displayMode }) => {
           );
 
           expect(math.html()).to.equal(
-            `<${wrapperTag}>KaTeX parse error: Expected '}', got 'EOF' at end of input: \\sum_{</${wrapperTag}>`
+            `<${wrapperTag}><span class="katex-error" title="ParseError: KaTeX parse error: Expected &#x27;}&#x27;, got &#x27;EOF&#x27; at end of input: \\sum_{" style="color:#cc0000">\\sum_{</span></${wrapperTag}>`
           );
         });
       });
