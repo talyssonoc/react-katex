@@ -12,7 +12,7 @@ const createMathComponent = (Component, { displayMode }) => {
       this.state = this.createNewState(null, props);
     }
 
-    componentWillReceiveProps() {
+    UNSAFE_componentWillReceiveProps() {
       this.setState(this.createNewState);
     }
 
