@@ -1,28 +1,18 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import KaTeX from 'katex';
 
 const createMathComponent = (Component, { displayMode }) => {
-  class MathComponent extends React.Component {
-    constructor(props) {
-      super(props);
+  const MathComponent = ({ children, errorColor, math, renderError }) => {
+    const formula = math ?? children;
 
-      this.usedProp = props.math ? 'math' : 'children';
-
-      this.state = this.createNewState(null, props);
-    }
-
-    componentWillReceiveProps() {
-      this.setState(this.createNewState);
-    }
-
-    shouldComponentUpdate(nextProps) {
-      return nextProps[this.usedProp] !== this.props[this.usedProp];
-    }
-
-    createNewState(prevState, props) {
+    const { html, error } = useMemo(() => {
       try {
-        const html = this.generateHtml(props);
+        const html = KaTeX.renderToString(formula, {
+          displayMode,
+          errorColor,
+          throwOnError: !!renderError,
+        });
 
         return { html, error: undefined };
       } catch (error) {
@@ -32,29 +22,14 @@ const createMathComponent = (Component, { displayMode }) => {
 
         throw error;
       }
+    }, [formula, errorColor, renderError]);
+
+    if (error) {
+      return renderError ? renderError(error) : <Component html={`${error.message}`} />;
     }
 
-    generateHtml(props) {
-      const { errorColor, renderError } = props;
-
-      return KaTeX.renderToString(props[this.usedProp], {
-        displayMode,
-        errorColor,
-        throwOnError: !!renderError,
-      });
-    }
-
-    render() {
-      const { error, html } = this.state;
-      const { renderError } = this.props;
-
-      if (error) {
-        return renderError ? renderError(error) : <Component html={`${error.message}`} />;
-      }
-
-      return <Component html={html} />;
-    }
-  }
+    return <Component html={html} />;
+  };
 
   MathComponent.propTypes = {
     children: PropTypes.string,

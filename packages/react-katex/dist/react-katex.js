@@ -13,24 +13,23 @@
   const createMathComponent = (Component, {
     displayMode
   }) => {
-    class MathComponent extends React__default["default"].Component {
-      constructor(props) {
-        super(props);
-        this.usedProp = props.math ? 'math' : 'children';
-        this.state = this.createNewState(null, props);
-      }
-
-      componentWillReceiveProps() {
-        this.setState(this.createNewState);
-      }
-
-      shouldComponentUpdate(nextProps) {
-        return nextProps[this.usedProp] !== this.props[this.usedProp];
-      }
-
-      createNewState(prevState, props) {
+    const MathComponent = ({
+      children,
+      errorColor,
+      math,
+      renderError
+    }) => {
+      const formula = math ?? children;
+      const {
+        html,
+        error
+      } = React.useMemo(() => {
         try {
-          const html = this.generateHtml(props);
+          const html = KaTeX__default["default"].renderToString(formula, {
+            displayMode,
+            errorColor,
+            throwOnError: !!renderError
+          });
           return {
             html,
             error: undefined
@@ -44,41 +43,18 @@
 
           throw error;
         }
-      }
+      }, [formula, errorColor, renderError]);
 
-      generateHtml(props) {
-        const {
-          errorColor,
-          renderError
-        } = props;
-        return KaTeX__default["default"].renderToString(props[this.usedProp], {
-          displayMode,
-          errorColor,
-          throwOnError: !!renderError
+      if (error) {
+        return renderError ? renderError(error) : /*#__PURE__*/React__default["default"].createElement(Component, {
+          html: `${error.message}`
         });
       }
 
-      render() {
-        const {
-          error,
-          html
-        } = this.state;
-        const {
-          renderError
-        } = this.props;
-
-        if (error) {
-          return renderError ? renderError(error) : /*#__PURE__*/React__default["default"].createElement(Component, {
-            html: `${error.message}`
-          });
-        }
-
-        return /*#__PURE__*/React__default["default"].createElement(Component, {
-          html: html
-        });
-      }
-
-    }
+      return /*#__PURE__*/React__default["default"].createElement(Component, {
+        html: html
+      });
+    };
 
     MathComponent.propTypes = {
       children: PropTypes__default["default"].string,
