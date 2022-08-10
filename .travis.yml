@@ -1,9 +1,8 @@
 language: node_js
 node_js:
-  - "4.0"
-  - "6.0"
+  - lts
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
   - export PATH="$HOME/.yarn/bin:$PATH"
-script: "npm test"
-after_success: "npm run report-coverage"
+script: 'yarn workspace react-katex test'
+after_success: 'yarn workspace react-katex report-coverage'
