@@ -1,9 +1,8 @@
 import { InlineMath } from '../../src';
 import sharedExamples from '../sharedExamples';
 
-describe('InlineMath', function() {
+describe('InlineMath', function () {
   sharedExamples(InlineMath, {
-    wrapperTag: 'span',
-    displayMode: false
+    displayMode: false,
   });
 });

@@ -40,7 +40,7 @@ const createMathComponent = (Component, { displayMode }) => {
       return KaTeX.renderToString(props[this.usedProp], {
         displayMode,
         errorColor,
-        throwOnError: !!renderError
+        throwOnError: !!renderError,
       });
     }
 
@@ -49,11 +49,7 @@ const createMathComponent = (Component, { displayMode }) => {
       const { renderError } = this.props;
 
       if (error) {
-        return renderError ? (
-          renderError(error)
-        ) : (
-          <Component html={`${error.message}`} />
-        );
+        return renderError ? renderError(error) : <Component html={`${error.message}`} />;
       }
 
       return <Component html={html} />;
@@ -64,7 +60,7 @@ const createMathComponent = (Component, { displayMode }) => {
     children: PropTypes.string,
     errorColor: PropTypes.string,
     math: PropTypes.string,
-    renderError: PropTypes.func
+    renderError: PropTypes.func,
   };
 
   return MathComponent;

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import createMathComponent from './createMathComponent';
 
 const BlockMath = ({ html }) => {
-  return <div dangerouslySetInnerHTML={{__html: html}} />;
+  return <div data-testid="react-katex" dangerouslySetInnerHTML={{ __html: html }} />;
 };
 
 BlockMath.propTypes = {
-  html: PropTypes.string.isRequired
+  html: PropTypes.string.isRequired,
 };
 
 export default createMathComponent(BlockMath, { displayMode: true });
