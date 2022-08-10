@@ -41,4 +41,21 @@ const createMathComponent = (Component, { displayMode }) => {
   return MathComponent;
 };
 
-export default createMathComponent;
+const InternalBlockMath = ({ html }) => {
+  return <div data-testid="react-katex" dangerouslySetInnerHTML={{ __html: html }} />;
+};
+
+InternalBlockMath.propTypes = {
+  html: PropTypes.string.isRequired,
+};
+
+const InternalInlineMath = ({ html }) => {
+  return <span data-testid="react-katex" dangerouslySetInnerHTML={{ __html: html }} />;
+};
+
+InternalInlineMath.propTypes = {
+  html: PropTypes.string.isRequired,
+};
+
+export const BlockMath = createMathComponent(InternalBlockMath, { displayMode: true });
+export const InlineMath = createMathComponent(InternalInlineMath, { displayMode: false });
