@@ -41,6 +41,7 @@ const createMathComponent = (Component, { displayMode }) => {
         const html = KaTeX.renderToString(formula, {
           displayMode,
           errorColor,
+          output: "mathml",
           throwOnError: !!renderError,
         });
 
