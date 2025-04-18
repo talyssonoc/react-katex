@@ -16,6 +16,7 @@ import KaTeX from 'katex';
  * @property {ReactNode=} children
  * @property {string=} errorColor
  * @property {ErrorRenderer=} renderError
+ * @property {boolean} fleqn
  *
  *
  * @typedef {object} MathComponentPropsWithChildren
@@ -23,6 +24,7 @@ import KaTeX from 'katex';
  * @property {ReactNode} children
  * @property {string=} errorColor
  * @property {ErrorRenderer=} renderError
+ * @property {boolean} fleqn
  *
  * @typedef {MathComponentPropsWithMath | MathComponentPropsWithChildren} MathComponentProps
  */
@@ -33,7 +35,7 @@ const createMathComponent = (Component, { displayMode }) => {
    * @param {MathComponentProps} props
    * @returns {ReactNode}
    */
-  const MathComponent = ({ children, errorColor, math, renderError }) => {
+  const MathComponent = ({ children, errorColor, math, renderError, fleqn }) => {
     const formula = math ?? children;
 
     const { html, error } = useMemo(() => {
@@ -42,6 +44,7 @@ const createMathComponent = (Component, { displayMode }) => {
           displayMode,
           errorColor,
           throwOnError: !!renderError,
+          fleqn,
         });
 
         return { html, error: undefined };
@@ -66,6 +69,7 @@ const createMathComponent = (Component, { displayMode }) => {
     errorColor: PropTypes.string,
     math: PropTypes.string,
     renderError: PropTypes.func,
+    fleqn: PropTypes.bool
   };
 
   return MathComponent;
