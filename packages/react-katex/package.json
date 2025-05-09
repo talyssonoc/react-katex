@@ -34,7 +34,7 @@
   },
   "peerDependencies": {
     "prop-types": "^15.8.1",
-    "react": ">=15.3.2 <=18"
+    "react": ">=15.3.2 <20"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.18.9",
